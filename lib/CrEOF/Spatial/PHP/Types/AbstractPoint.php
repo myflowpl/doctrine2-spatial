@@ -157,10 +157,17 @@ abstract class AbstractPoint extends AbstractGeometry
         $argc = count($argv);
 
         if (1 == $argc && is_array($argv[0])) {
-            return $argv[0];
+            $point = $argv[0];
+            if ((isset($point['lat']) && is_numeric($point['lat'])) && (isset($point['lng']) && is_numeric($point['lng']))) {
+                return array($point['lat'], $point['lng']);
+            }
+            if ((isset($point[0]) && is_numeric($point[0])) && (isset($point[1]) && is_numeric($point[1]))) {
+                return $point;
+            }
         }
 
         if (2 == $argc) {
+
             if (is_array($argv[0]) && (is_numeric($argv[1]) || is_null($argv[1]) || is_string($argv[1]))) {
                 $argv[0][] = $argv[1];
 
