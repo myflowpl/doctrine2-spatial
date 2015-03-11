@@ -143,7 +143,7 @@ abstract class AbstractPoint extends AbstractGeometry
      */
     public function toArray()
     {
-        return array('lat'=>$this->x, 'lng'=>$this->y);
+        return array($this->x, $this->y);
     }
 
     /**
